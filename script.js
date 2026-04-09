@@ -95,7 +95,7 @@ byId("loginBtn").addEventListener("click", async () => {
 
 byId("dailyBtn").addEventListener("click", async () => {
   try {
-    const data = await api("/api/rewards/daily", "POST", { token });
+    const data = await api("/api/rewards/daily", "POST", {});
     user = data.user;
     authMsg.textContent = `Daily reward claimed: +${data.reward} coins`;
     updateHud();
@@ -106,7 +106,7 @@ byId("dailyBtn").addEventListener("click", async () => {
 
 byId("secretBtn").addEventListener("click", async () => {
   try {
-    const data = await api("/api/rewards/secret", "POST", { token, code: byId("secretCode").value.trim() });
+    const data = await api("/api/rewards/secret", "POST", { code: byId("secretCode").value.trim() });
     user = data.user;
     authMsg.textContent = `Secret code accepted: +${data.coinsAwarded} coins`;
     updateHud();
@@ -119,7 +119,6 @@ byId("createQuizBtn").addEventListener("click", async () => {
   try {
     const q = JSON.parse(byId("quizQuestion").value.trim());
     const payload = {
-      token,
       title: byId("quizTitle").value.trim(),
       topic: byId("quizTopic").value.trim(),
       questions: [q]
@@ -134,7 +133,7 @@ byId("createQuizBtn").addEventListener("click", async () => {
 
 byId("banBtn").addEventListener("click", async () => {
   try {
-    await api("/api/moderation/action", "POST", { token, targetEmail: byId("modTarget").value.trim(), action: "ban" });
+    await api("/api/moderation/action", "POST", { targetEmail: byId("modTarget").value.trim(), action: "ban" });
     modMsg.textContent = "User banned.";
   } catch (e) {
     modMsg.textContent = e.message;
@@ -143,7 +142,7 @@ byId("banBtn").addEventListener("click", async () => {
 
 byId("unbanBtn").addEventListener("click", async () => {
   try {
-    await api("/api/moderation/action", "POST", { token, targetEmail: byId("modTarget").value.trim(), action: "unban" });
+    await api("/api/moderation/action", "POST", { targetEmail: byId("modTarget").value.trim(), action: "unban" });
     modMsg.textContent = "User unbanned.";
   } catch (e) {
     modMsg.textContent = e.message;
@@ -153,7 +152,6 @@ byId("unbanBtn").addEventListener("click", async () => {
 byId("setRoleBtn").addEventListener("click", async () => {
   try {
     await api("/api/moderation/action", "POST", {
-      token,
       targetEmail: byId("ownerTarget").value.trim(),
       action: "setRole",
       role: byId("ownerRole").value
