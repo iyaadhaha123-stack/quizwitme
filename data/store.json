@@ -1,0 +1,67 @@
+{
+  "users": {},
+  "quizzes": [
+    {
+      "id": "quiz-general-1",
+      "title": "General Starter Quiz",
+      "topic": "General Knowledge",
+      "createdBy": "system",
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "What is the capital city of France?",
+          "options": [
+            "Paris",
+            "Rome",
+            "Berlin",
+            "Madrid"
+          ],
+          "answerIndex": 0,
+          "explanation": "Paris is the capital and largest city of France."
+        },
+        {
+          "id": "q2",
+          "prompt": "Which planet is known as the Red Planet?",
+          "options": [
+            "Venus",
+            "Earth",
+            "Mars",
+            "Jupiter"
+          ],
+          "answerIndex": 2,
+          "explanation": "Mars appears red due to iron oxide on its surface."
+        },
+        {
+          "id": "q3",
+          "prompt": "2^5 equals?",
+          "options": [
+            "8",
+            "16",
+            "32",
+            "64"
+          ],
+          "answerIndex": 2,
+          "explanation": "2 multiplied by itself five times equals 32."
+        }
+      ]
+    }
+  ],
+  "rooms": {},
+  "xpLevels": [
+    0,
+    100,
+    250,
+    450,
+    700,
+    1000,
+    1400,
+    1900,
+    2500,
+    3300,
+    4200,
+    5200
+  ],
+  "metadata": {
+    "createdAt": "2026-04-09T14:37:24.581Z"
+  }
+}

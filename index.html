@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quizwitme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Quizwitme</div>
+    <div class="hud">
+      <span id="hudRole" class="pill">Role: Guest</span>
+      <span id="hudCoins" class="pill">Coins: 0</span>
+      <span id="hudXp" class="pill">XP: 0</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <nav class="sidebar">
+      <button class="tab active" data-tab="auth">Auth</button>
+      <button class="tab" data-tab="play">Play</button>
+      <button class="tab" data-tab="teacher">Teacher</button>
+      <button class="tab" data-tab="moderator">Moderator</button>
+      <button class="tab" data-tab="owner">Owner</button>
+      <button class="tab" data-tab="shop">Skins Shop</button>
+      <button class="tab" data-tab="tutor">AI Tutor</button>
+    </nav>
+
+    <section class="content">
+      <section class="panel active" id="auth">
+        <h1>Welcome to Quizwitme</h1>
+        <p>Blooket-style quiz platform with multiplayer, progression, and classroom tools.</p>
+        <div class="grid two">
+          <div class="card">
+            <h3>Register</h3>
+            <input id="regName" placeholder="Display name" />
+            <input id="regEmail" placeholder="Email" />
+            <input id="regPass" type="password" placeholder="Password" />
+            <button id="registerBtn" class="btn primary">Create Account</button>
+          </div>
+          <div class="card">
+            <h3>Login</h3>
+            <input id="loginEmail" placeholder="Email" />
+            <input id="loginPass" type="password" placeholder="Password" />
+            <button id="loginBtn" class="btn primary">Login</button>
+            <button id="dailyBtn" class="btn">Claim Daily Reward</button>
+            <div class="row">
+              <input id="secretCode" placeholder="Secret code" />
+              <button id="secretBtn" class="btn">Redeem</button>
+            </div>
+          </div>
+        </div>
+        <p id="authMsg" class="msg"></p>
+      </section>
+
+      <section class="panel" id="play">
+        <h2>Multiplayer Play</h2>
+        <div class="grid two">
+          <div class="card">
+            <h3>Modes</h3>
+            <select id="modeSelect"></select>
+            <div class="row">
+              <input id="roomCode" placeholder="Room code (e.g. QUIZ123)" />
+              <button id="joinRoomBtn" class="btn primary">Join / Create Room</button>
+            </div>
+            <button id="correctBtn" class="btn">Submit Correct</button>
+            <button id="wrongBtn" class="btn">Submit Wrong</button>
+            <button id="nextQuestionBtn" class="btn">Next Question</button>
+          </div>
+          <div class="card">
+            <h3>Live Leaderboard</h3>
+            <div id="leaderboard"></div>
+            <h4>Anti-Cheat Monitor</h4>
+            <div id="antiCheat"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="teacher">
+        <h2>Teacher Panel</h2>
+        <p>Create and host quizzes, then review class performance.</p>
+        <div class="card">
+          <input id="quizTitle" placeholder="Quiz title" />
+          <input id="quizTopic" placeholder="Topic" />
+          <textarea id="quizQuestion" rows="4" placeholder='JSON question format: {"prompt":"2+2?","options":["3","4","5","6"],"answerIndex":1,"explanation":"2+2=4"}'></textarea>
+          <button id="createQuizBtn" class="btn primary">Create Quiz</button>
+          <p id="teacherMsg" class="msg"></p>
+        </div>
+        <div class="card">
+          <h3>Published Quizzes</h3>
+          <div id="quizzes"></div>
+        </div>
+      </section>
+
+      <section class="panel" id="moderator">
+        <h2>Moderator Panel</h2>
+        <div class="card">
+          <input id="modTarget" placeholder="Target user email" />
+          <div class="row">
+            <button id="banBtn" class="btn">Ban</button>
+            <button id="unbanBtn" class="btn">Unban</button>
+          </div>
+          <p id="modMsg" class="msg"></p>
+        </div>
+      </section>
+
+      <section class="panel" id="owner">
+        <h2>Owner Panel</h2>
+        <p>Only `iyaadhaha123@gmail.com` is automatically owner-enabled.</p>
+        <div class="card">
+          <input id="ownerTarget" placeholder="Target email" />
+          <select id="ownerRole">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+            <option value="moderator">Moderator</option>
+            <option value="owner">Owner</option>
+          </select>
+          <button id="setRoleBtn" class="btn primary">Set Role</button>
+          <p id="ownerMsg" class="msg"></p>
+        </div>
+      </section>
+
+      <section class="panel" id="shop">
+        <h2>Skins Inventory (150+ unlockables)</h2>
+        <div id="skinsGrid" class="skins-grid"></div>
+      </section>
+
+      <section class="panel" id="tutor">
+        <h2>AI Tutor</h2>
+        <div class="card">
+          <textarea id="tutorQuestion" rows="3" placeholder="Paste a question to get explanation"></textarea>
+          <input id="tutorOptions" placeholder='Options CSV, e.g. Earth,Mars,Venus,Jupiter' />
+          <input id="tutorCorrect" type="number" min="0" placeholder="Correct index" />
+          <button id="tutorBtn" class="btn primary">Explain Answer</button>
+          <pre id="tutorOutput"></pre>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
